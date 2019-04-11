@@ -1,0 +1,4 @@
+Log modifiche allo script:
+10/04 FS: ho iniziato a scrivere il codice, ho un abbozzo di main e ho impostato i file per definire le funzione per la funzione d'onda e l'energia.
+11/04 FS: ho continuato a scrivere il codice, ho migliorato il main e ho scritto le funzioni, il codice runna! Ho iniziato a scrivere il latex:
+link: https://www.overleaf.com/7775594313dfxcbvwzsgjd 
