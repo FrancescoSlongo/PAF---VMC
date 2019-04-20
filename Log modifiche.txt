@@ -5,3 +5,4 @@ link: https://www.overleaf.com/7775594313dfxcbvwzsgjd
 14/04 FS: ho modificato lo script e lo ho un attimino ottimizzato meglio, ora ci sono commentate le parti per salvare i dati in txt. Ho runnato lo script per vedere
 dove tagliare i dati e fatto lo script di matlab per visualizzarli (tutto in cartella "Dati cut"). Sul latex ho finito la sezione sulla teoria e ora bisogna iniziare
 quella specifica sull'algoritmo.
+19/04 ZB: ho modificato main e funzioni che avevi fatto per farlo andare con tutte e due le funzioni d'onda settando solo un parametro (wftype). Non ho ancora compilato. 
