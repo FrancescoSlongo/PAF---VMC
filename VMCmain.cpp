@@ -9,7 +9,7 @@
 
 #include "functions.h"			// Nostra libreria con funzioni
 
-using namespace std;  // In C++ si lavora in ambienti, chiamando all'inizio si evita il problema ed è come in C
+using namespace std;  // In C++ si lavora in ambienti, chiamando all'inizio si evita il problema ed ï¿½ come in C
 
 int main() {
 	// Chiamo il tutto il necessario per il generatore di numeri casuali
@@ -17,14 +17,24 @@ int main() {
 	mt19937_64 gen(rd());
 	uniform_real_distribution<double> RNG(0, 1);
 
-	// Inizializzo le variabili che mi servono
+	// tipo di wavefunction e hamiltoniana:
+	int wftype = 0; 
+	// 0 -> wavefunction gaussiana con solo alpha e senza interazione culombiana
+	// 1 -> wavefunction gaussiana con solo alpha e con interazione culombiana
+	// 2 -> wavefunction con due parametri e interazione culombiana
+
+	// inizializzo variabili per la fisica della simulazione
+	double alpha = 1; // Paramentro funzione d'onda: sigma gaussiana
+	double beta = 1; // Parametro funzione d'onda: Jastrow term
+	double omega = 1; // Frequenza dell'oscillatore armonico
+
+	// Inizializzo le variabili per la simulazione
 	int MCC = 1000;  // Numero di MonteCarlo cycles
-	double alpha = 1; // Paramentro funzione d'onda
 	double E = 0, sumE = 0, sumE2 = 0; // Valore dove salvare le variabile E e E^2
 	double rstep = 0; // Incremento nel VMC
-	double omega = 1; // Frequenza dell'oscillatore armonico
 	double accratio = 0; // Ratio di accettazione del metropolis
 	int ncut = 0; // Valore a cui incominciare a prendere le misure
+	
 	// Posizione elettroni
 	double* Rold = new double[6]; // Inizializzazione con memoria dinamica, viene usato come un array normale
 	double* Rnew = new double[6];
@@ -36,18 +46,20 @@ int main() {
 	// Funzioni d'onda calcolanata nel punto
 	double Psiold = 0, Psinew = 0;
 
-	for (int i = 0; i < 5; i++) { // Ciclo su diversi valori di alpha
+	// Ciclo su diversi valori di alpha
+	for (int i = 0; i < 5; i++) { 
 		// Definisco rstep in funzione di alpha
 		rstep = 2.5/sqrt(alpha*omega);
 		// Calcolo la wavefunction nel punto
-		Psiold = Wavefunction(Rold, omega, alpha);
+		Psiold = Wavefunction(Rold, omega, alpha, beta, wftype);
 		for (int j = 0; j < MCC; j++) { // Ciclo sui MCC
 			// Nuovo valore posizioni
 			for (int i = 0; i < 6; i++) {
 				Rnew[i] = Rold[i] + rstep*(RNG(gen) - 0.5);
 			}
 			// Calcolo la wavefunction nel punto
-			Psinew = Wavefunction(Rnew, omega, alpha);
+			Psinew = Wavefunction(Rnew, omega, alpha, beta, wftype);
+			
 			// Metropolis
 			if (RNG(gen) <= Psinew * Psinew / (Psiold*Psiold)) {  // Accetto la mossa
 				for (int i = 0; i < 6; i++) { 
@@ -62,7 +74,7 @@ int main() {
 				}
 			}
 			if (j > ncut) {
-				E = Localenergy(Rnew, omega, alpha);
+				E = Localenergy(Rnew, omega, alpha, beta,wftype);
 				sumE += E;
 				sumE2 += E * E;
 			}
