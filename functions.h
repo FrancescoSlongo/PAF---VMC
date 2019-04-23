@@ -10,9 +10,9 @@
 #include <random>				// For random number generator.
 
 // Funzione per calcolare la wavefunction dato l'array in ingresso
-double Wavefunction(double* R, double omega, double alpha);
+double Wavefunction(double* R, double omega, double alpha, double beta, int wftype);
 
 // Funzione per calcolare l'energia
-double Localenergy(double* R, double omega, double alpha);
+double Localenergy(double* R, double omega, double alpha, double beta, int wftype);
 
 #endif // VMC_H
