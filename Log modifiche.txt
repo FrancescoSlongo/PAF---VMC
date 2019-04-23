@@ -6,3 +6,4 @@ link: https://www.overleaf.com/7775594313dfxcbvwzsgjd
 dove tagliare i dati e fatto lo script di matlab per visualizzarli (tutto in cartella "Dati cut"). Sul latex ho finito la sezione sulla teoria e ora bisogna iniziare
 quella specifica sull'algoritmo.
 19/04 ZB: ho modificato main e funzioni che avevi fatto per farlo andare con tutte e due le funzioni d'onda settando solo un parametro (wftype). Non ho ancora compilato. 
+23/04 ZB: ho ulteriormente modificato il main. Ora c'è anche il ciclo su beta e funziona tutto. Bisogna fare i plot e 
