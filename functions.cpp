@@ -4,7 +4,7 @@ using namespace  std;
 
 double Wavefunction(double* R, double omega, double alpha, double beta, int wftype) {
 	// Definisco due raggi e distanza tra elettroni per comodit�
-	double r1 = 0, r2 = 0; 
+	double r1 = 0, r2 = 0, r12 = 0; 
 	// Inizializzo il valore dell'output
 	double wfvalue = 0;
 
@@ -24,7 +24,7 @@ double Wavefunction(double* R, double omega, double alpha, double beta, int wfty
 
 	wfvalue = exp(-alpha * omega*(r1 + r2) / 2); // parte gaussiana dell wf
 
-	if (wftype == 0 || wftype = 1) {
+	if (wftype == 0 || wftype == 1) {
 		return wfvalue; // va bene se unico parametro è alpha
 	}
 
