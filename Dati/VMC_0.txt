@@ -1,0 +1,24 @@
+Omega 0.01 Beta 0.15
+Alpha 1 Beta 0.15 Media 0.0299997 Errore (1 sigma) 9.48726e-05 Percentuale di accettazione 50.475%
+Alpha 2 Beta 0.15 Media 0.0375598 Errore (1 sigma) 0.0131654 Percentuale di accettazione 50.295%
+Alpha 3 Beta 0.15 Media 0.0501753 Errore (1 sigma) 0.0224015 Percentuale di accettazione 50.289%
+Alpha 4 Beta 0.15 Media 0.0623653 Errore (1 sigma) 0.0329557 Percentuale di accettazione 50.334%
+Alpha 5 Beta 0.15 Media 0.0769551 Errore (1 sigma) 0.04269 Percentuale di accettazione 50.392%
+Omega 0.5 Beta 0.16
+Alpha 1 Beta 0.16 Media 1.49998 Errore (1 sigma) 0.00474363 Percentuale di accettazione 50.206%
+Alpha 2 Beta 0.16 Media 1.87713 Errore (1 sigma) 0.64515 Percentuale di accettazione 50.048%
+Alpha 3 Beta 0.16 Media 2.50345 Errore (1 sigma) 1.1524 Percentuale di accettazione 50.212%
+Alpha 4 Beta 0.16 Media 3.20823 Errore (1 sigma) 1.60475 Percentuale di accettazione 49.912%
+Alpha 5 Beta 0.16 Media 3.88311 Errore (1 sigma) 2.06562 Percentuale di accettazione 50.268%
+Omega 1 Beta 0.17
+Alpha 1 Beta 0.17 Media 2.99997 Errore (1 sigma) 0.00948726 Percentuale di accettazione 50.355%
+Alpha 2 Beta 0.17 Media 3.77538 Errore (1 sigma) 1.28585 Percentuale di accettazione 50.427%
+Alpha 3 Beta 0.17 Media 5.00689 Errore (1 sigma) 2.28999 Percentuale di accettazione 50.6251%
+Alpha 4 Beta 0.17 Media 6.36213 Errore (1 sigma) 3.30998 Percentuale di accettazione 50.231%
+Alpha 5 Beta 0.17 Media 7.76557 Errore (1 sigma) 4.18765 Percentuale di accettazione 50.427%
+Omega 5 Beta 0.18
+Alpha 1 Beta 0.18 Media 14.9998 Errore (1 sigma) 0.0474363 Percentuale di accettazione 50.6201%
+Alpha 2 Beta 0.18 Media 18.7643 Errore (1 sigma) 6.34257 Percentuale di accettazione 50.01%
+Alpha 3 Beta 0.18 Media 24.8136 Errore (1 sigma) 11.7786 Percentuale di accettazione 50.289%
+Alpha 4 Beta 0.18 Media 31.7951 Errore (1 sigma) 16.5407 Percentuale di accettazione 50.376%
+Alpha 5 Beta 0.18 Media 39.0063 Errore (1 sigma) 20.7658 Percentuale di accettazione 50.209%
