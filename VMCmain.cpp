@@ -18,7 +18,7 @@ int main() {
 	uniform_real_distribution<double> RNG(0, 1);
 
 	// tipo di wavefunction e hamiltoniana:
-	int wftype = 2; 
+	int wftype = 0; 
 	// 0 -> wavefunction gaussiana con solo alpha e senza interazione culombiana
 	// 1 -> wavefunction gaussiana con solo alpha e con interazione culombiana
 	// 2 -> wavefunction con due parametri e interazione culombiana
@@ -29,23 +29,23 @@ int main() {
 	outname.append(".txt");
 
 	// inizializzo variabili per la fisica della simulazione
-	double alpha = 0.7; // Paramentro funzione d'onda: sigma gaussiana
+	double alpha = 1; // Paramentro funzione d'onda: sigma gaussiana
 	double beta = 0.15; // Parametro funzione d'onda: Jastrow term
 	double omega[4] = { 0.01, 0.5, 1, 5}; // Frequenza dell'oscillatore armonico
 	double n_beta = 10; // Numero di beta visitati nel ciclo
 	double n_alpha = 5; // Numero di alpha visitati nel ciclo
 	double step_beta = 0.01; // incremento di beta
-	double step_alpha = 0.1; // incremento di alpha
+	double step_alpha = 1; // incremento di alpha
 
 	// Inizializzo le variabili per la simulazione
 	int MCC = 100000;  // Numero di MonteCarlo cycles
 	double E = 0, sumE = 0, sumE2 = 0; // Valore dove salvare le variabile E e E^2
-	double errore = 0; // valore dove salvare l'errore sull'energia
+	double error = 0; // valore dove salvare l'errore sull'energia
 	double Emin = 10, errore_Emin = 0; // valore dove salvare l'energia minima
 	double betamin = 0, alphamin = 0; // valori dove salvare alpha e beta che minimizzano l'energia 
 	double rstep = 0; // Incremento nel VMC
 	double accratio = 0; // Ratio di accettazione del metropolis
-	int ncut = 1000; // Valore a cui incominciare a prendere le misure
+	int ncut = 10; // Valore a cui incominciare a prendere le misure
 	
 	// Posizione elettroni
 	double* Rold = new double[6]; // Inizializzazione con memoria dinamica, viene usato come un array normale
@@ -63,12 +63,13 @@ int main() {
 	for (int q = 0; q < 4; q++) {
 		// Ciclo su diversi valori di beta
 		for (int p = 0; p < n_beta; p++) {
-			cout << "Omega " << omega[q] << "Beta " << beta << endl;
+			cout << "Omega " << omega[q] << " Beta " << beta << endl;
+			ofile << "Omega " << omega[q] << " Beta " << beta << endl;
 			// Ciclo su diversi valori di alpha
 			for (int s = 0; s < n_alpha; s++) {
 
 				// Definisco rstep in funzione di alpha
-				rstep = 1.5 / sqrt(alpha * omega[q]);
+				rstep = 1.375 / sqrt(alpha * omega[q]);
 				// Calcolo la wavefunction nel punto
 				Psiold = Wavefunction(Rold, omega[q], alpha, beta, wftype);
 				for (int j = 0; j < MCC; j++) { // Ciclo sui MCC
@@ -102,16 +103,16 @@ int main() {
 				// Medio i risultati
 				sumE = sumE / (MCC - ncut); // Medio i valori
 				sumE2 = sumE2 / (MCC - ncut);
-				errore = sqrt(sumE2 - sumE * sumE);
+				error = sqrt(sumE2 - sumE * sumE);
 				accratio = accratio / (MCC - ncut);
 				// Print a schermo dei risultati
-				cout << "Omega" << omega[q] << " Alpha " << alpha << " Media " << sumE << " Errore (1 sigma) " << errore << " Percentuale di accettazione " << accratio * 100 << "%" << endl;
+				cout << "Alpha " << alpha << " Media " << sumE << " Errore (1 sigma) " << error << " Percentuale di accettazione " << accratio * 100 << "%" << endl;
 				// Print a schermo dei risultati
-				ofile << "Omega" << omega[q] << " Alpha " << alpha << " Beta " << beta << " Media " << sumE << " Errore (1 sigma) " << errore << " Percentuale di accettazione " << accratio * 100 << "%" << endl;
+				ofile << "Alpha " << alpha << " Beta " << beta << " Media " << sumE << " Errore (1 sigma) " << error << " Percentuale di accettazione " << accratio * 100 << "%" << endl;
 				// Trovo l'energia minima
 				if (sumE < Emin) {
 					Emin = sumE;
-					errore_Emin = errore;
+					errore_Emin = error;
 					betamin = beta;
 					alphamin = alpha;
 				}
@@ -130,9 +131,9 @@ int main() {
 				p = n_beta;
 			}
 		}
+		cout << "Energia minima " << Emin << " errore (1 sigma) " << errore_Emin << " beta " << betamin << " alpha " << alphamin << endl;
 	}
 	ofile.close();
-	cout << "Energia minima " << Emin << " errore (1 sigma) " << errore_Emin << " beta " << betamin << " alpha " << alphamin << endl;
 	system("pause"); // Comando che non fa chiudere in automatico la finestra di output in Visual Studio
 	
 	return 0;
